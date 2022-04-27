@@ -17,46 +17,28 @@ export default class RelacionesSesionesController {
       //public async create({}: HttpContextContract) {}
     
       public async store({ response, request, auth }: HttpContextContract) {
-        try{
+       try
+       {
+          const data = {
+            sesion_id: request.input('sesion_id'),
+            jugador_id: auth.user?.id,
+            posicion: request.input('posicion')
+          }
 
-            const rs = await Database.rawQuery('select count(id) as conteo from relaciones_sesiones where sesion_id=?', [request.input('sesion_id')])
-            const rs2 = await Database.rawQuery('select count(id) as conteo from relaciones_sesiones where posicion=?', [request.input('posicion')])
+          await RelacionesSesione.create(data)
 
-            const rrs = rs[0]
-            const rrrs = rrs[0]
+          response.ok({message: "se inserto correctamente", data: true})
 
-            const rrs2 = rs2[0]
-            const rrrs2 = rrs2[0]
-
-            if(rrrs['conteo'] != 0 && rrrs2['conteo'] != 0)
-            {
-                response.badRequest({message: "posicion ocupado", data: false})
-            }
-
-            else
-            {
-                const data = {
-                  sesion_id: request.input('sesion_id'),
-                  jugador_id: auth.user?.id,
-                  posicion: request.input('posicion')
-                }
-
-                await RelacionesSesione.create(data)
-
-                response.ok({message: "se inserto correctamente", data: true})
-            }
-
-            //const tJugadores = await RelacionesSesione.query().count('sesion_id').where('sesion_id', dato.sesion_id)
         }
         catch(error) {
           return response.badRequest('Error en los datos enviados')
         }
       }
 
-      public async consultaUsuarios({ response, params }: HttpContextContract){
-          try{
+      public async consultaUsuarios({ response, params }: HttpContextContract)
+      {
+        try{
 
-            //await RelacionesSesione.findOrFail(params.id)
 
             const tJugadores = await Database.rawQuery('select count(id) as JugadoresActuales from relaciones_sesiones where sesion_id=?', [params.id])
             const Jpermitidos = await Database.rawQuery('select cant_jugadores as JugadoresPermitidos from sesiones where id=?', [params.id])
@@ -81,7 +63,7 @@ export default class RelacionesSesionesController {
         }
       }
     
-      /* public async edit({}: HttpContextContract) {}*/
+      public async edit({}: HttpContextContract) {}
     
       public async update({ params, request, response }: HttpContextContract) {
           try{

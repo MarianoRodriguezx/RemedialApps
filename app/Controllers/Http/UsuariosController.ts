@@ -29,7 +29,7 @@ export default class UsuariosController {
       return response.badRequest('Datos de inicio erroneos')
     }
   }
-  //public async create({}: HttpContextContract) {}
+  public async create({}: HttpContextContract) {}
 
   public async store({ response, request, auth }: HttpContextContract) {
     //try{
@@ -59,9 +59,9 @@ export default class UsuariosController {
     }
   }
 
-  /* public async edit({}: HttpContextContract) {}
+  public async edit({}: HttpContextContract) {}
 
   public async update({}: HttpContextContract) {}
 
-  public async destroy({}: HttpContextContract) {} */
+  public async destroy({}: HttpContextContract) {}
 }

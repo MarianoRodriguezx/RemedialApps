@@ -28,10 +28,11 @@ Route.post('login', 'UsuariosController.login')
 
 Route.resource('users', 'UsuariosController')
 
-Route.resource('relacion_sesiones', 'RelacionesSesionesController')
+
 
 Route.group(()=> {
 
+  Route.resource('relacion_sesiones', 'RelacionesSesionesController')
   Route.resource('sesiones', 'SesionesController')
   Route.get('consultaUsuarios/:id', 'RelacionesSesionesController.consultaUsuarios')
   

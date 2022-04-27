@@ -13,7 +13,7 @@ export default class SesionesController {
         }
       }
     
-      //public async create({}: HttpContextContract) {}
+      public async create({}: HttpContextContract) {}
     
       public async store({ response, request, auth }: HttpContextContract) {
         try{
@@ -45,7 +45,7 @@ export default class SesionesController {
         }
       }
     
-      /* public async edit({}: HttpContextContract) {}*/
+      public async edit({}: HttpContextContract) {}
     
       public async update({ params, request, response }: HttpContextContract) {
           try{
